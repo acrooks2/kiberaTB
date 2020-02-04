@@ -1,0 +1,13 @@
+kianda toilets baths lavatories
+
+
+
+Attributes:
+GEOMETRY: Geometry - 
+VIL_CODE: Vil Code - 
+DATE: Date - 
+SHEET_N: Sheet N - 
+STRUCTURE: Structure - 
+STR_CODE: Str Code - 
+
+exported on Wed Aug 15 02:24:33 -0400 2012

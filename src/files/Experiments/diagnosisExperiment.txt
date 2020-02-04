@@ -1,0 +1,1 @@
+Frequency %OfSchools percentHealthyAverage percentInfectedAverage percentDiseasedAverage percentDeadAverage

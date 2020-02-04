@@ -1,0 +1,131 @@
+Kianda Structures and Population dataset
+
+LEGEND OF VARIABLES:
+
+HOUSEHOLD
+number of households within the structure
+BUSINESS
+number of business within the structure
+SERVICE
+number of services within the structure
+EMPTY
+number of empty units
+NO_INFO
+number of units with no info attached
+TOT_UNITS
+total units (households+business+services+empty)
+BUSI_C
+type of business: commercial
+BUSI_P
+type of business: private
+BUSI_S
+type of business: service
+SERV_H
+type of service: health
+SERV_EDU
+type of service: education
+SERV_O
+type of service: other
+ELECT
+number of households supplied with electricity
+WATER
+number of households supplied with water
+TOILET
+number of households with a toilet
+ROOMS
+number of rooms within structure
+POP
+number of people livin in the structure
+FAMILIES
+number of families
+FAM_S
+single adults
+FAM_SP
+single parents
+FAM_C
+married couples
+FAM_P
+polygamic
+FAM_UP
+adults with family somwhere else
+WOMEN
+number of adult women
+CHILD
+number of children
+MAT_IR
+building material : iron
+MAT_WOO
+building material: wood
+MAT_M
+building material: mud
+MAT_BR
+building material: bricks
+RENT_MIN
+monthly rent per room (MINIMUM)
+RENT_MAX
+monthly rent per room (MAXIMUM)
+OWNER
+number of residents owning their house
+RENT_MEAN
+monthly rent per room (MEAN)
+RENT_STR
+monthly rent for the entire structure
+
+
+Attributes:
+GEOMETRY: Geometry - 
+BUSINESS: Business - 
+RENT_MEAN: Rent Mean - 
+RENT_STR: Rent Str - 
+FAM_S_D: Fam S D - 
+MAT_WOO_D: Mat Woo D - 
+VIL_CODE: Vil Code - 
+WATER: Water - 
+WOMEN: Women - 
+RENT_MIN: Rent Min - 
+OWNER: Owner - 
+MAT_M_D: Mat M D - 
+HOUSEHOLD: Household - 
+EMPTY: Empty - 
+TOT_UNITS: Tot Units - 
+BUSI_C: Busi C - 
+SERV_H: Serv H - 
+ROOMS: Rooms - 
+FAM_UP_D: Fam Up D - 
+MAT_IR_D: Mat Ir D - 
+ELECT_D: Elect D - 
+DATE: Date - 
+SERVICE: Service - 
+MAT_M: Mat M - 
+BUSI_P: Busi P - 
+ELECT: Elect - 
+FAM_C: Fam C - 
+MAT_BR: Mat Br - 
+POP_D: Pop D - 
+FAM_SP_D: Fam Sp D - 
+NO_INFO: No Info - 
+CHILD_D: Child D - 
+FAM_C_D: Fam C D - 
+SERV_EDU: Serv Edu - 
+TOILET: Toilet - 
+POP: Pop - 
+FAMILIES: Families - 
+CHILD: Child - 
+MAT_WOO: Mat Woo - 
+SHEET_N: Sheet N - 
+BUSI_S: Busi S - 
+FAM_P: Fam P - 
+WOMEN_D: Women D - 
+STRUCTURE: Structure - 
+POP_R: Pop R - 
+FAM_UP: Fam Up - 
+MAT_IR: Mat Ir - 
+RENT_MAX: Rent Max - 
+FAM_P_D: Fam P D - 
+STR_CODE: Str Code - 
+MAT_BR_D: Mat Br D - 
+SERV_O: Serv O - 
+FAM_S: Fam S - 
+FAM_SP: Fam Sp - 
+
+exported on Wed Aug 15 06:57:49 -0400 2012
