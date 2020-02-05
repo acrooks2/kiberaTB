@@ -1,0 +1,58 @@
+* Kibera TB
+** Week of the 3rd: Review ODD, Verify against implementation in code
+make sure agents are created but only removed if die; no new agents added
+*** TODO Verify Control Flow:
+**** Read spatial and demographic files
+**** Create environment
+**** Buiild Grids and displays
+**** Create and place agents (assign personal information)
+**** Schedule agents to update
+**** Set TB and HIV parameters
+**** introduce TB to an initial numbers of agents
+**** Step
+***** Go through list of agents, step each one randomly
+***** agent determines what activity to perform based on inherent characterstics
+***** Agent reach goal?
+****** No? Move
+****** Yes? Do Activity
+**** TB Transmission 
+**** Health Depreciation
+***** Agent has TB?
+****** Yes? Health depreciation (also changes contagious levels)
+******* Agent on treatment?
+******** Yes?
+Initiate agent treatment, with enough time to make agent non-contagious. Can only be activated if disease is asymptomatic
+**** Record results, update graphs
+*** TODO Verify Goal Selection submodel
+- [ ] Schools
+- [ ] Religion
+- [ ] Water
+- [ ] Business
+- [ ] Socialization
+- [ ] Restaurants
+- [ ] Work
+*** TODO Verify Parameter Values
+- [ ] Table 1
+- [ ] Table 2 Disease variables
+- [ ] Table 3 4 5 6 7 8 9 10
+
+  CD4CountDrop, CD4 Count for TB_max are commented out?
+  CD4Count is never used in ResidentTB.java; quite a few others like this
+
+  Why are the parameters/ tables in different places?
+  no HIV survival time in table 10?
+  salivaPerCough is 6*10^(-7), not 6e8
+  
+  mortalityRateLatentTB never used
+*** TODO Verify Implementation of SEIR Submodel
+*** TODO Up and running with new version of Mason
+*** TODO Verify Equations in ODD
+*** TODO Understand source
+    KiberaTB vs ResidentTB?
+
+
+** Week of the 10th: Check the literature on TB and make sure the code base is reflective on this/ if not make changes
+*** TODO Fix CDI and Seabright
+*** TODO Verify Results
+**** Parameter testing
+** Week of the 17th: Model runs, but this might be difficult due to the time it takes to run the model etc. or if changes are needed.
