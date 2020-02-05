@@ -123,7 +123,7 @@ public class KiberaTBWithUI extends GUIState {
 
 		//-------------------Adding the resteruants portrayal--------------------------------	
 		FieldPortrayal2D resterauntPortrayal = new SparseGridPortrayal2D();
-		resterauntPortrayal.setField(kibera.resterauntGrid);
+		resterauntPortrayal.setField(kibera.restaurantGrid);
 		resterauntPortrayal.setPortrayalForAll(new RectanglePortrayal2D(new Color(102, 0, 102), 1.0, false));
 		display.attach(resterauntPortrayal, "Resteraunts");
 

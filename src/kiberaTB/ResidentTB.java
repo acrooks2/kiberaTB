@@ -24,7 +24,7 @@ public final class ResidentTB implements Steppable {
     private Household home;
     private double waterDemand = 0.0;
     private int latUse; //laterine use, normal is 1-2 per day 
-    private int resterauntVisits;
+    private int restaurantVisits;
 
     private Parcel position; //current position 
     private Parcel homeLocation; //home position 
@@ -46,7 +46,7 @@ public final class ResidentTB implements Steppable {
     public double Prob_ExposureAge = 0.8;  // probabilit of exposure exponent - 80% age grourp
 
     //Figure out if an agent is in a public place
-    public boolean onResteraunt = false;
+    public boolean onRestaurant = false;
     public boolean onSchool = false;
     public boolean onReligion = false;
     public boolean onWater = false;
@@ -388,9 +388,9 @@ public final class ResidentTB implements Steppable {
 //            }
 //        }
         
-        if (this.getResterauntVisits() < 3) {
+        if (this.getRestaurantVisits() < 3) {
             if (cStep % 168 == 0 && kibera.getRandom().nextDouble() > 0.5) {
-                this.setResterauntVisits(kibera.getRandom().nextInt(10)); //
+                this.setRestaurantVisits(kibera.getRandom().nextInt(10)); //
             }
         }
 
@@ -417,14 +417,12 @@ public final class ResidentTB implements Steppable {
     public void susceptible() {
         this.setHealthStatus(this.susceptible); //
         this.isSusceptible = true;
-
         this.hasExposed = false;// no more exposed asit pass to latent
         this.hasLatentInfection = false; //no sign
         this.hasLatenInfectionExposed = false;
-        this.hasActiveInfection = false;// not show any sympthom so stay as latent
+        this.hasActiveInfection = false;// doesn't show any symptoms so stay as latent
         this.hasRecovered = false; // not yet - it can continue as latent for long period
         this.isContagious = false; // but not contagious
-
     }
 
     //when the resident is exposed to tb bacteria
@@ -785,11 +783,11 @@ public final class ResidentTB implements Steppable {
             
             ResidentTB res = (ResidentTB) nextPeople.objs[personNextToMe];
 
-            // it is better to assume directly the baccillemitted for exposure rather than holding baccilli count in the reident memory
+            // it is better to assume directly the bacilli emitted for exposure rather than holding bacilli count in the reident memory
             // we do not know the bacteria growth dynamics 
-            // but we knows the time the agent stay in the facility 
-            // the more the agent stay their with the infected one the more likely it is exposed
-            //uptake is the range from 0-bacilliEmitted
+            // but we knows the time the agent stays in the facility
+            // the more the agent stays their with the infected one the more likely it is exposed
+            // uptake is the range from 0-bacilliEmitted
           
             if (bacilliEmitted > res.infectionDose) { //0.3*res.infectionDose
                 if (res.isSusceptible) {
@@ -817,7 +815,7 @@ public final class ResidentTB implements Steppable {
     
     
     
-    // if you are at a goal and if the goal is contaminated by bacilli, you be infected
+    // if you are at a goal and if the goal is contaminated by bacilli, you become infected
     public void infected() {
         double bacilliEmitted = this.getPosition().getBacilliLoad();
 
@@ -1006,8 +1004,8 @@ public final class ResidentTB implements Steppable {
         if (this.getPosition().equals(this.getHomeLocation()) == true) {
             int cAct = determineActivity(); //   select the best goal 
 
-            if (cAct == ActivityTB.resteraunt) {
-                this.resterauntVisits -= 1;
+            if (cAct == ActivityTB.restaurant) {
+                this.restaurantVisits -= 1;
             }
             
 
@@ -1022,8 +1020,8 @@ public final class ResidentTB implements Steppable {
             if (kibera.getRandom().nextDouble() < 0.4) {
                 int cAct = determineActivity(); //   select the best goal 
 
-                if (cAct == ActivityTB.resteraunt) {
-                    this.resterauntVisits -= 1;
+                if (cAct == ActivityTB.restaurant) {
+                    this.restaurantVisits -= 1;
                 }
 
                 ActivityTB act = new ActivityTB();
@@ -1068,7 +1066,7 @@ public final class ResidentTB implements Steppable {
             stayingPeriod = 1 + kibera.getRandom().nextInt(3); //stay at mosque for only 1 hour.
         } else if (act == ActivityTB.business) {
             stayingPeriod = 2 + kibera.getRandom().nextInt(5); //stay at business anywhere between 1-5 hours
-        } else if (act == ActivityTB.resteraunt) {
+        } else if (act == ActivityTB.restaurant) {
             stayingPeriod = 1 + kibera.getRandom().nextInt(3);
         } else if (act == ActivityTB.socialize) {
             stayingPeriod = 2 + kibera.getRandom().nextInt(5); //stay for min 1 hour, up to 4
@@ -1104,7 +1102,7 @@ public final class ResidentTB implements Steppable {
 
         activityPriorityWeight[ActivityTB.religion] = religionActivityWeight(isDayTime) ;
         activityPriorityWeight[ActivityTB.business] = businessActivityWeight(isDayTime) ;
-        activityPriorityWeight[ActivityTB.resteraunt] = resterauntActivityWeight(isDayTime) ;
+        activityPriorityWeight[ActivityTB.restaurant] = restaurantActivityWeight(isDayTime) ;
         activityPriorityWeight[ActivityTB.socialize] = socializeActivityWeight(isDayTime) ;
         activityPriorityWeight[ActivityTB.water] = waterActivityWeight(isDayTime) ;
         activityPriorityWeight[ActivityTB.healthCenter] = healthActivityWeight(isDayTime) ;
@@ -1123,7 +1121,7 @@ public final class ResidentTB implements Steppable {
         }
 
         onBusiness = false;
-        onResteraunt = false;
+        onRestaurant = false;
         onSchool = false;
         onWater = false;
         onReligion = false;
@@ -1132,8 +1130,8 @@ public final class ResidentTB implements Steppable {
 
         if (act == ActivityTB.business) {
             onBusiness = true;
-        } else if (act == ActivityTB.resteraunt) {
-            onResteraunt = true;
+        } else if (act == ActivityTB.restaurant) {
+            onRestaurant = true;
         } else if (act == ActivityTB.school) {
             onSchool = true;
         } else if (act == ActivityTB.religion) {
@@ -1200,19 +1198,19 @@ public final class ResidentTB implements Steppable {
         return wVisitSoc * kibera.getRandom().nextDouble();
     }
 
-    private double resterauntActivityWeight(boolean isDayTime) {
-        double wResteraunt;
+    private double restaurantActivityWeight(boolean isDayTime) {
+        double wRestaurant;
 
-        //assumption here is that the average adult will visit a resteraunt or bar 0 to 3 times a week 
-        if (getResterauntVisits() > 0 && isDayTime) { //nothing open between 2 and 8
-            wResteraunt = ((getResterauntVisits() / 3.0) * .7) * kibera.getRandom().nextDouble();
-        } else if (getResterauntVisits() > 0 && hourInDay > 12 && hourInDay < 14) {
-            wResteraunt = ((getResterauntVisits() / 3.0) * .3) * kibera.getRandom().nextDouble();
+        //assumption here is that the average adult will visit a restaurant or bar 0 to 3 times a week 
+        if (getRestaurantVisits() > 0 && isDayTime) { //nothing open between 2 and 8
+            wRestaurant = ((getRestaurantVisits() / 3.0) * .7) * kibera.getRandom().nextDouble();
+        } else if (getRestaurantVisits() > 0 && hourInDay > 12 && hourInDay < 14) {
+            wRestaurant = ((getRestaurantVisits() / 3.0) * .3) * kibera.getRandom().nextDouble();
         } else {
-            wResteraunt = 0;
+            wRestaurant = 0;
         }
 
-        return wResteraunt * kibera.getRandom().nextDouble();
+        return wRestaurant * kibera.getRandom().nextDouble();
     }
 
     private double businessActivityWeight(boolean isDayTime) {
@@ -1362,12 +1360,12 @@ public final class ResidentTB implements Steppable {
     
   //<editor-fold defaultstate="collapsed" desc="Accessors">  
     //----------------Accessor/Modifier Methods---------------
-    public int getResterauntVisits() {
-        return resterauntVisits;
+    public int getRestaurantVisits() {
+        return restaurantVisits;
     }
 
-    public void setResterauntVisits(int val) {
-        resterauntVisits = val;
+    public void setRestaurantVisits(int val) {
+        restaurantVisits = val;
     }
 
     public int getAge() {

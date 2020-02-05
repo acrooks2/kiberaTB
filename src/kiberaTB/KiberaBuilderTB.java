@@ -271,7 +271,7 @@ public class KiberaBuilderTB {
 			int numResteraunts = 0;
 			int numWater = 0;
 
-			//------------------------------------------------Adding resteraunts---------------------------------------
+			//------------------------------------------------Adding restaurants---------------------------------------
 
 			for (int i = 0; i < 6; ++i) {
 				resterauntLine = resteraunt.readLine();
@@ -330,10 +330,10 @@ public class KiberaBuilderTB {
 
 							resterauntFacility.setEmployeeCapacity(employeeCapacity);
 
-							kibera.allResteraunts.add(resterauntFacility);
-							kibera.resterauntLocations.add(parcel);
+							kibera.allRestaurants.add(resterauntFacility);
+							kibera.restaurantLocations.add(parcel);
 							kibera.allEmployers.add(resterauntFacility);
-							kibera.resterauntGrid.setObjectLocation(resterauntFacility, parcelLocation);
+							kibera.restaurantGrid.setObjectLocation(resterauntFacility, parcelLocation);
                                                         kibera.allFacilities.add(parcel);
 						}
 
@@ -1436,7 +1436,7 @@ public class KiberaBuilderTB {
 		kibera.healthFacilityGrid = new SparseGrid2D(width, height);
 		kibera.religiousFacilityGrid = new SparseGrid2D(width, height);
 		kibera.schoolGrid = new SparseGrid2D(width, height);
-		kibera.resterauntGrid = new SparseGrid2D(width, height);
+		kibera.restaurantGrid = new SparseGrid2D(width, height);
 		kibera.waterSourcesGrid = new SparseGrid2D(width, height);
 		kibera.businessGrid = new SparseGrid2D(width, height);
 		kibera.householdGrid = new SparseGrid2D(width, height);

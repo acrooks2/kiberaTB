@@ -44,7 +44,7 @@ public class KiberaTB extends SimState {
     public SparseGrid2D nodes; //nodes of the system for movement
     public SparseGrid2D businessGrid; //contains grid with all businesses
     public SparseGrid2D waterSourcesGrid; //contains grid with all public water sources
-    public SparseGrid2D resterauntGrid;
+    public SparseGrid2D restaurantGrid;
     public final Parameters params;
     public GeomGridField allCampGeoGrid;
     // ----------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public class KiberaTB extends SimState {
     public Bag allBusinesses;
     public Bag allHealthFacilities;
     public Bag allReligiousFacilities;
-    public Bag allResteraunts;
+    public Bag allRestaurants;
     public Bag allLatrines;
     public Bag allWaterSources;
     public Bag allSchools;
@@ -65,7 +65,7 @@ public class KiberaTB extends SimState {
     public Bag allFacilities;
     public Bag allEmployers;
 
-    public Bag resterauntLocations;
+    public Bag restaurantLocations;
     public Bag schoolLocations;
     public Bag waterLocations;
     public Bag healthLocations;
@@ -85,7 +85,7 @@ public class KiberaTB extends SimState {
 
     //public int schoolCapacity = Parameters.schoolCapacity;
     public int waterCapacity;
-    public int resterauntCapacity;
+    public int restaurantCapacity;
     public int healthCapacity;
     public int religiousCapacity;
 
@@ -309,7 +309,7 @@ public class KiberaTB extends SimState {
         allHouseholds = new Bag();
         allFacilities = new Bag();
         allStructures = new Bag();
-        allResteraunts = new Bag();
+        allRestaurants = new Bag();
         allWaterSources = new Bag();
         availableParcels = new Bag();
         allSchools = new Bag();
@@ -320,7 +320,7 @@ public class KiberaTB extends SimState {
         businessTier2Locations = new Bag();
         businessTier3Locations = new Bag();
 
-        resterauntLocations = new Bag();
+        restaurantLocations = new Bag();
         schoolLocations = new Bag();
         waterLocations = new Bag();
         healthLocations = new Bag();
@@ -340,7 +340,7 @@ public class KiberaTB extends SimState {
          * "kibera/data/health.txt", "kibera/data/religion.txt", this);
          */
         KiberaBuilderTB.createWorld("src/files/data/kibera.txt", "src/files/data/roads_cost_distance.txt", "src/files/data/schools.txt",
-                "src/files/data/health.txt", "src/files/data/religion.txt", "src/files/data/resteraunts/resteraunts.txt",
+                "src/files/data/health.txt", "src/files/data/religion.txt", "src/files/data/restaurants/restaurants.txt",
                 "src/files/data/waterSources/waterSources.txt", this);
 
         System.out.println("Build Successful!");
@@ -458,7 +458,7 @@ public class KiberaTB extends SimState {
                             hotspotLocsInfected[0] += 1;
                         } else if (res.onReligion) {
                             hotspotLocsInfected[4] += 1;
-                        } else if (res.onResteraunt) {
+                        } else if (res.onRestaurant) {
                             hotspotLocsInfected[1] += 1;
                         } else if (res.onSchool) {
                             hotspotLocsInfected[2] += 1;
@@ -475,7 +475,7 @@ public class KiberaTB extends SimState {
                             hotspotLocsDiseased[0] += 1;
                         } else if (res.onReligion) {
                             hotspotLocsDiseased[4] += 1;
-                        } else if (res.onResteraunt) {
+                        } else if (res.onRestaurant) {
                             hotspotLocsDiseased[1] += 1;
                         } else if (res.onSchool) {
                             hotspotLocsDiseased[2] += 1;

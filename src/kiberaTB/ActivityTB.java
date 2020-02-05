@@ -18,7 +18,7 @@ public class ActivityTB {
 	final public static int school = 1;
 	final public static int water = 2;
 	final public static int religion = 3;
-	final public static int resteraunt = 4;
+	final public static int restaurant = 4;
 	final public static int healthCenter = 5;
 	final public static int socialize = 6; //number jump b/c socializeRelatives was removed
 	final public static int work = 7;
@@ -49,8 +49,8 @@ public class ActivityTB {
 			return bestLocation(res.getPosition(), kibera.waterLocations, kibera);
 		} else if (actId == religion) {
 			return bestLocation(res.getPosition(), kibera.religiousLocations, kibera);
-		} else if (actId == resteraunt) {
-			return bestLocation(res.getPosition(), kibera.resterauntLocations, kibera);
+		} else if (actId == restaurant) {
+			return bestLocation(res.getPosition(), kibera.restaurantLocations, kibera);
 		} else if (actId == healthCenter) {
 			return bestLocation(res.getPosition(), kibera.healthLocations, kibera);
 		} else if (actId == business) {

@@ -104,7 +104,7 @@ public class KiberaTBObserver implements Steppable {
         String numSchool = Integer.toString(kibera.sumAct[ActivityTB.school]);
         String numWater = Integer.toString(kibera.sumAct[ActivityTB.water]);
         String numReligion = Integer.toString(kibera.sumAct[ActivityTB.religion]);
-        String numResteraunt = Integer.toString(kibera.sumAct[ActivityTB.resteraunt]);
+        String numResteraunt = Integer.toString(kibera.sumAct[ActivityTB.restaurant]);
         String numHealthCenter = Integer.toString(kibera.sumAct[ActivityTB.healthCenter]);
         String numSocialize = Integer.toString(kibera.sumAct[ActivityTB.socialize]);
         String numWork = Integer.toString(kibera.sumAct[ActivityTB.work]);

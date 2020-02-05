@@ -57,7 +57,7 @@ public class Parameters {
         final public static double HBVTreatmentHIVARTCoverage = 0.5; // how many out the HIV patient got antiretroviral therapy (ART).
 
 	//Survival time for someone with untreated HIV is 0-12 years (or 0-105120 hours)
-        // with HIV treatment, it might be more 
+        // with HIV treatment, it might be more
 	//Source: http://www.hiv.va.gov/patient/faqs/life-expectancy-with-HIV.asp
 	final public static int HIVSurvivalTime = 105120;
 
@@ -162,10 +162,11 @@ public class Parameters {
         final public static double TBBacilliConcentration_Max = 650000; //bacilli per mL - high ( average can be 70,000)
 
 	//Concentration of saliva per cough
-	//Source: http://www.camra.msu.edu/documents/CAMRA_TB_ALERT.pdf 
-	final public static double salivaPerCough = .0000006; //ml per cough 
-        
-        final public static double bacilliClearanceRatePerHour = 0.8;
+	//Source: http://www.camra.msu.edu/documents/CAMRA_TB_ALERT.pdf
+    // TODO: FIX DISCREPENCY
+	final public static double salivaPerCough = 0.0000006; //ml per cough
+
+	final public static double bacilliClearanceRatePerHour = 0.8;
 
 	//Coughs per hour. Average is 10, normal distribution is used 
 	//Source: http://www.camra.msu.edu/documents/CAMRA_TB_ALERT.pdf
