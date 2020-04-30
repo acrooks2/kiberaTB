@@ -103,7 +103,7 @@ public class LegendTB extends Canvas {
 		leg.drawString("Health Facilities", 70, 422);
 		leg.drawString("Schools", 70, 462);
 		leg.drawString("Religious Facilities", 70, 502);
-		leg.drawString("Resteraunts", 70, 542);
+		leg.drawString("restaurants", 70, 542);
 		leg.drawString("Public Water Sources", 70, 582);
 		
 

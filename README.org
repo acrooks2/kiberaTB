@@ -1,7 +1,13 @@
 * Kibera TB
-** Week of the 3rd: Review ODD, Verify against implementation in code
-make sure agents are created but only removed if die; no new agents added
-*** TODO Verify Control Flow:
+
+** Notes 4/31
+*** do references to Tayler-Smith 2011 et al need to be updated?
+*** goal selection section?
+*** head of the family?
+** General/Running
+
+**  Review ODD, Verify against implementation in code
+*** DONE Verify Control Flow:
 **** Read spatial and demographic files
 **** Create environment
 **** Buiild Grids and displays
@@ -23,7 +29,7 @@ make sure agents are created but only removed if die; no new agents added
 ******** Yes?
 Initiate agent treatment, with enough time to make agent non-contagious. Can only be activated if disease is asymptomatic
 **** Record results, update graphs
-*** TODO Verify Goal Selection submodel
+*** DONE Verify Goal Selection submodel
 - [ ] Schools
 - [ ] Religion
 - [ ] Water
@@ -31,28 +37,100 @@ Initiate agent treatment, with enough time to make agent non-contagious. Can onl
 - [ ] Socialization
 - [ ] Restaurants
 - [ ] Work
-*** TODO Verify Parameter Values
+*** DONE Jones el al 2009
+*** DONE Can you be treated while you're latent for TB?
+     I think no.
+*** DONE Attrition rate vs mortality? Tayler smith
+Attrition rate is how you drop out of program, mortality is dying
+*** DONE Understand source .. ish
+truly a WIP but is not its own action item
+
+*** DONE make sure agents are created but only removed if die; no new agents added .. is reflected in the paper
+*** DONE If you drop out, does treatment become less effective?
+    In real world, you may become drug resistant if you drop out. How does our model reflect this?
+    It doesn't.
+*** DONE Verify Implementation of SEIR Submodel
+
+**** DONE Step-through SEIR, check phase transitions
+
+*** DONE Verify Parameter Values
 - [ ] Table 1
 - [ ] Table 2 Disease variables
 - [ ] Table 3 4 5 6 7 8 9 10
+  mortalityRateLatentTB never used
 
   CD4CountDrop, CD4 Count for TB_max are commented out?
   CD4Count is never used in ResidentTB.java; quite a few others like this
 
-  Why are the parameters/ tables in different places?
-  no HIV survival time in table 10?
-  salivaPerCough is 6*10^(-7), not 6e8
-  
-  mortalityRateLatentTB never used
-*** TODO Verify Implementation of SEIR Submodel
+**** DONE Read Patterson, 2012, determine HIV prevalence rate, correct in text
+This was correct, so I fixed in model. 
+**** DONE salivaPerCough is 6*10^(-7), not 6e8
+**** Confirm HIV survival time in table 10?
+**** Tayler-Smith et al 2011, TB Infection Prevalence Rate
+Says Latent rate of 30%, "disease" rate of .064
+
+Latest data says 567/100,000 = 0.00567
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5992751/
+*** DONE Learn about how phases work
 *** TODO Up and running with new version of Mason
+*** TODO Double Check Step-through SEIR, check phase transitions
+**** TODO Check question marks in diagram
+**** TODO Can latent TB disappear?
+*** TODO How much does your bacilli count influence your likelihood of getting active TB?
+Similar questions for Latent-exposed
+
+*** TODO Check TB treatment rates without HIV, update code in ResidentTB::573
+
 *** TODO Verify Equations in ODD
-*** TODO Understand source
-    KiberaTB vs ResidentTB?
+
+** TODO Remake figures using lucidchart
+
+*** Activity Diagram
+*** SEIR
+** TODO Systematically review methodology section of ODD
+*** TODO Make sure that the ODD reflects the code
+*** TODO Make sure it's a complete ODD
+
+** Write Background for Paper
+*** Do Research
+- on both ABMs and other TB modeling
+- make folder
+- use google scholar
+- put the reference, one sentence, similarities/differences from our model
+- model has to be unique (what is the contribution to science), how is ours better
+ 
+*** Writeup / making the argument 
+**** What is TB (already have)
+**** How has it been studied?
+ABM/SD/MATH/CA
+Might me models of population, but also internal models
+**** How is ours better
+
+while tb has been studied from vac/medicine POV (recent), attention has also been placed on modeling
+Why model? hard to understand the future
+can't test intervention on people, want to do it in silico
+many modeling approaches, traditionally mathematical/system dynamics (add a few citations)
+
+Turning to ABMs - heterogeneity, individual movement and interactions, 
+
+Initial work includes Bob et al, who did X + Y, while smith et all shows this
+But in our model we do XY which makes ours different and better
+
+When looking at ABM models, keep a check on what disease model using (SIR, SEIR)
+
+***** Fix CDI 
+***** TODO Fix Seabright
+***** TODO Verify Results
+****** Parameter testing
 
 
-** Week of the 10th: Check the literature on TB and make sure the code base is reflective on this/ if not make changes
-*** TODO Fix CDI and Seabright
-*** TODO Verify Results
-**** Parameter testing
-** Week of the 17th: Model runs, but this might be difficult due to the time it takes to run the model etc. or if changes are needed.
+***** Model runs, but this might be difficult due to the time it takes to run the model etc. or if changes are needed.
+   
+***** Paper/ Conceptual:
+
+What happens if you remove segregation/ethnicities? how much more or less accurate does it get?
+
+****** Where are people being exposed?
+******* Schools/Businesses?
+******* Every time somone gets exposed, log their xy, time, activity, agent ID
+******* Then create a shapefile of points

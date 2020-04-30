@@ -59,12 +59,12 @@ public class KiberaBuilderTB {
 	 * @param facilityFile
 	 * @param healthFile
 	 * @param religionFile
-	 * @param resterauntFile
+	 * @param restaurantFile
 	 * @param waterFile
 	 * @param kibera
 	 */
 	public static void createWorld(String landFile, String roadFile, String facilityFile, String healthFile, String religionFile,
-			String resterauntFile, String waterFile, KiberaTB kibera) {
+								   String restaurantFile, String waterFile, KiberaTB kibera) {
 
 		kibera.allParcels.clear();
 		kibera.allResidents.clear();
@@ -78,7 +78,7 @@ public class KiberaBuilderTB {
 
 		addStructures(kibera); //adds the households and businesses
 
-		addFacilities(facilityFile, healthFile, religionFile, resterauntFile, waterFile, kibera); //adds schools, hospitals, and religious centers 
+		addFacilities(facilityFile, healthFile, religionFile, restaurantFile, waterFile, kibera); //adds schools, hospitals, and religious centers
 
 		addResidents(kibera); //adds the residents (giving them characteristics as well)
 		determineReligion(kibera); //determines religion for residents 
@@ -231,11 +231,11 @@ public class KiberaBuilderTB {
 	 * @param facilityFile
 	 * @param healthFile
 	 * @param religionFile
-	 * @param resterauntFile
+	 * @param restaurantFile
 	 * @param waterFile
 	 * @param kibera
 	 */
-	public static void addFacilities(String facilityFile, String healthFile, String religionFile, String resterauntFile, String waterFile,
+	public static void addFacilities(String facilityFile, String healthFile, String religionFile, String restaurantFile, String waterFile,
 			KiberaTB kibera) {
 		try {
 			// buffer reader - read ascii file
@@ -248,8 +248,8 @@ public class KiberaBuilderTB {
 			BufferedReader religiousFacilities = new BufferedReader(new FileReader(religionFile));
 			String religiousLine;
 
-			BufferedReader resteraunt = new BufferedReader(new FileReader(resterauntFile));
-			String resterauntLine;
+			BufferedReader restaurant = new BufferedReader(new FileReader(restaurantFile));
+			String restaurantLine;
 
 			BufferedReader water = new BufferedReader(new FileReader(waterFile));
 			String waterLine;
@@ -268,28 +268,28 @@ public class KiberaBuilderTB {
 			int numSchools = 0;
 			int numHealth = 0;
 			int numReligion = 0;
-			int numResteraunts = 0;
+			int numrestaurants = 0;
 			int numWater = 0;
 
 			//------------------------------------------------Adding restaurants---------------------------------------
 
 			for (int i = 0; i < 6; ++i) {
-				resterauntLine = resteraunt.readLine();
+				restaurantLine = restaurant.readLine();
 			}
 
-			Business resterauntFacility = null;
+			Business restaurantFacility = null;
 
 			for (int curr_row = 0; curr_row < height; ++curr_row) {
-				resterauntLine = resteraunt.readLine();
-				tokens = resterauntLine.split("\\s+");
+				restaurantLine = restaurant.readLine();
+				tokens = restaurantLine.split("\\s+");
 
 				for (int curr_col = 0; curr_col < width; ++curr_col) {
 					if (tokens[curr_col].equals("") == false) {
-						int resterauntFacilityType = Integer.parseInt(tokens[curr_col]);
+						int restaurantFacilityType = Integer.parseInt(tokens[curr_col]);
 
 						Parcel parcel = null;
 
-						if (resterauntFacilityType > 0) {
+						if (restaurantFacilityType > 0) {
 							Int2D parcelLocation = new Int2D(curr_col, curr_row);
 
 							parcel = (Parcel) kibera.landGrid.get(curr_col, curr_row);
@@ -304,10 +304,10 @@ public class KiberaBuilderTB {
 							if (numStructuresOnParcel == 0) {
 								Structure s = new Structure(parcel);
 								kibera.allStructures.add(s);
-								resterauntFacility = new Business(s, resterauntFacilityType);
+								restaurantFacility = new Business(s, restaurantFacilityType);
 								s.setParcel(parcel);
 								parcel.addStructure(s);
-								numResteraunts++;
+								numrestaurants++;
 							} else {
 								int rn = 1 + kibera.getRandom().nextInt(numStructuresOnParcel);
 
@@ -318,22 +318,22 @@ public class KiberaBuilderTB {
 									i++;
 
 									if (i == rn) {
-										resterauntFacility = new Business(s, resterauntFacilityType);
-										resterauntFacility.setStructure(s);
+										restaurantFacility = new Business(s, restaurantFacilityType);
+										restaurantFacility.setStructure(s);
 
-										numResteraunts++;
+										numrestaurants++;
 
 									}
 								}
 							}
 							int employeeCapacity = 10 + kibera.getRandom().nextInt(kibera.params.globalParam.getformalBusinessCapacity() - 10);
 
-							resterauntFacility.setEmployeeCapacity(employeeCapacity);
+							restaurantFacility.setEmployeeCapacity(employeeCapacity);
 
-							kibera.allRestaurants.add(resterauntFacility);
+							kibera.allRestaurants.add(restaurantFacility);
 							kibera.restaurantLocations.add(parcel);
-							kibera.allEmployers.add(resterauntFacility);
-							kibera.restaurantGrid.setObjectLocation(resterauntFacility, parcelLocation);
+							kibera.allEmployers.add(restaurantFacility);
+							kibera.restaurantGrid.setObjectLocation(restaurantFacility, parcelLocation);
                                                         kibera.allFacilities.add(parcel);
 						}
 
@@ -622,14 +622,14 @@ public class KiberaBuilderTB {
 
 			/*
 			 * System.out.println("Number Schools = " + numSchools); System.out.println("Number Health = " + numHealth);
-			 * System.out.println("Number Religion = " + numReligion); System.out.println("Number Resteraunts = " + numResteraunts);
+			 * System.out.println("Number Religion = " + numReligion); System.out.println("Number restaurants = " + numrestaurants);
 			 * System.out.println("Number Water = " + numWater);
 			 */
 
 			facilities.close();
 			healthFacilities.close();
 			religiousFacilities.close();
-			resteraunt.close();
+			restaurant.close();
 			water.close();
 
 		} catch (IOException ex) {
@@ -1033,12 +1033,12 @@ public class KiberaBuilderTB {
                                 int healthStatus = 1; // start with all suscipitible
                                 
                                 //latent
-                                if (kibera.getRandom().nextDouble() <  kibera.params.globalParam.getTBLatentInfectionPrevalanceRate()){ // how many are latent
+                                if (kibera.getRandom().nextDouble() <  kibera.params.globalParam.getTBLatentInfectionPrevalenceRate()){ // how many are latent
                                  healthStatus =3;
                                 }
                                   
                                 // infected - overwrite
-                                if (kibera.getRandom().nextDouble() <= kibera.params.globalParam.getTBDiseasePrevalanceRate()) { // how many are already infected
+                                if (kibera.getRandom().nextDouble() <= kibera.params.globalParam.getTBDiseasePrevalenceRate()) { // how many are already infected
 					healthStatus =4;
                                  }
                                 if (kibera.getRandom().nextDouble() <= kibera.params.HBVTreatmentHIVARTCoverage) { // how many are already infected
@@ -1241,7 +1241,7 @@ public class KiberaBuilderTB {
 		if (isSchoolEligible) { //if student then not employed
 			return false;
 		} else {
-			if (gender == 1) { //if female, then 56.3% of them are employed 
+			if (gender == 1) { //if female, then 56.3% of them are employed TODO: is this correct?
 				if (random < .563)
 					return true;
 				else

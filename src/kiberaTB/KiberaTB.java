@@ -114,9 +114,9 @@ public class KiberaTB extends SimState {
     final public static double latentToDiseaseLifeTimeHIV_MIN = Parameters.latentToDiseaseLifeTimeHIV_MIN; //  once in lifetime 1 yr *  365day * 24 hour = 8760  with 7%
     final public static double latentToDiseaseLifeTimeHIV_MAX = Parameters.latentToDiseaseLifeTimeHIV_MAX;  // once in lifetime 1 yr *  365day * 24 hour = 8760  with 10%
     final public static double recoveredToLatentProb = Parameters.recoveredToLatentProb;
-    final public static double lantentToRecovered = Parameters.lantentToRecovered;
+    final public static double lantentToRecovered = Parameters.latentToRecovered;
 
-    final public static double diseaseToLatentDuetoTreatmentDropputPro = Parameters.diseaseToLatentDuetoTreatmentDropputPro;
+    final public static double diseaseToLatentDuetoTreatmentDropputPro = Parameters.diseaseToLatentDuetoTreatmentDropoutPro;
     // source:  //http://www.jimmunol.org/content/185/1/15.full
     final public static double exposedToLatentPhaseMin = Parameters.exposedToLatentPhaseMin; // 20-30% goes to latent
     final public static double exposedToLatentPhaseMax = Parameters.exposedToLatentPhaseMax; // 20-30% goes to latent
@@ -215,8 +215,8 @@ public class KiberaTB extends SimState {
     public double mortalityRateNaturalDeath = Parameters.mortalityRateNaturalDeath;// for suscp and recovered - set zero since no birth considered in the model
     public double mortalityRateLatentTB = Parameters.mortalityRateLatentTB; // including secondary exposure
     public double mortalityRateActiveTB = Parameters.mortalityRateActiveTB;
-    public double moratlityRateActiveTB_HIV_NoART = Parameters.moratlityRateActiveTB_HIV_NoART;
-    public double moratlityRateActiveTB_HIV_ART = Parameters.moratlityRateActiveTB_HIV_ART;
+    public double moratlityRateActiveTB_HIV_NoART = Parameters.mortalityRateActiveTB_HIV_NoART;
+    public double moratlityRateActiveTB_HIV_ART = Parameters.mortalityRateActiveTB_HIV_ART;
 
     // -------------- other variables ---------------------------------------
     public GeomVectorField roadLinks;
@@ -498,7 +498,7 @@ public class KiberaTB extends SimState {
 
                 //-------------Daily activities--------------------------------
                 String actTitle = "Resident Activity"; // row key - activity
-                String[] activities = new String[]{"At Home", "School", "Water", "Religion", "Resteraunt", "Health C.", "Social", "Work",
+                String[] activities = new String[]{"At Home", "School", "Water", "Religion", "restaurant", "Health C.", "Social", "Work",
                     "Business"};
 
                 // percentage - agent activity by type
@@ -511,7 +511,7 @@ public class KiberaTB extends SimState {
 
                 //-------------------Check to see where infected people are----------------------
                 String infectedTitle = "Hotspot Activity for INFECTED individuals";
-                String[] infectLocs = new String[]{"Business", "Resteraunt", "School", "Water", "Religion"};
+                String[] infectLocs = new String[]{"Business", "restaurant", "School", "Water", "Religion"};
 
                 for (int k = 0; k < hotspotLocsInfected.length; k++) {
                     if (allInfected != 0) {
@@ -522,7 +522,7 @@ public class KiberaTB extends SimState {
 
                 //-------------------Check to see where infected people are----------------------
                 String diseasedTitle = "Hotspot Activity for DISEASED individuals";
-                String[] diseasedLocs = new String[]{"Business", "Resteraunt", "School", "Water", "Religion"};
+                String[] diseasedLocs = new String[]{"Business", "restaurant", "School", "Water", "Religion"};
 
                 for (int k = 0; k < hotspotLocsDiseased.length; k++) {
                     if (allDiseased != 0) {

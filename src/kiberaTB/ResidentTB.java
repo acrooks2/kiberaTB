@@ -10,6 +10,7 @@ import ec.util.MersenneTwisterFast;
 import sim.util.Bag;
 import sim.field.network.Edge;
 
+
 //--------------------------------
 //agent for the Kibera TB model
 public final class ResidentTB implements Steppable {
@@ -167,7 +168,7 @@ public final class ResidentTB implements Steppable {
         }
         
 
-        //Determine depreciation rate;s 
+        //Determine depreciation rates
         if (this.hasHIV) {
             double hoursToLive =  kibera.HIVSurvivalTime *(1.5 - 0.7 * kibera.getRandom().nextDouble()); 
             HIVDepreciation = bodyHealth / hoursToLive;
@@ -175,7 +176,7 @@ public final class ResidentTB implements Steppable {
             this.TBOnlyDepreciationRate = 0;
 
             //double TBhoursToLive = kibera.getRandom().nextInt(kibera.TBWithHIVSurvivalTime);
-            double TBhoursToLive =  kibera.TBWithHIVSurvivalTime *(1.5 - 0.7  * kibera.getRandom().nextDouble()); // at leaset 30%
+            double TBhoursToLive =  kibera.TBWithHIVSurvivalTime *(1.5 - 0.7  * kibera.getRandom().nextDouble()); // at least 30%
             this.TBAndHIVDepreciationRate = bodyHealth / TBhoursToLive;
 
           // this.CD4Count = kibera.CD4CountForTB_Min + (kibera.getRandom().nextDouble() * (kibera.HIVCD4Count_MAX - kibera.CD4CountForTB_Min));
@@ -183,6 +184,8 @@ public final class ResidentTB implements Steppable {
             HIVDepreciation = 0.0;
             this.TBAndHIVDepreciationRate = 0.0;
             //double hoursToLive = kibera.getRandom().nextInt(kibera.TBWithoutHIVSurvivalTime);
+            // TODO: where does 1.5 and 0.7 come from?
+            // TODO: does TB only deprecation rate apply for both latent and active residents?
             double hoursToLive = kibera.TBWithoutHIVSurvivalTime *(1.5 - 0.7 * kibera.getRandom().nextDouble()); 
             this.TBOnlyDepreciationRate = bodyHealth / hoursToLive;
         }
@@ -433,7 +436,7 @@ public final class ResidentTB implements Steppable {
         this.hasLatenInfectionExposed = false;
         this.isSusceptible = false;
         this.hasLatentInfection = false; //no sign
-        this.hasActiveInfection = false;// not show any sympthom so stay as latent
+        this.hasActiveInfection = false;// not show any symptom so stay as latent
         this.hasRecovered = false; // not yet - it can continue as latent for long period
         this.isContagious = false; // but not contagious
         
@@ -447,7 +450,7 @@ public final class ResidentTB implements Steppable {
         this.hasLatentInfection = true;
         this.isSusceptible = false;
         this.hasExposed = false;// no more exposed asit pass to latent
-        this.hasActiveInfection = false;// not show any sympthom so stay as latent
+        this.hasActiveInfection = false;// not show any symptom so stay as latent
         this.hasRecovered = false; // not yet - it can continue as latent for long period
         this.isContagious = false; // but not contagious
 
@@ -490,7 +493,7 @@ public final class ResidentTB implements Steppable {
     }
 
     // phase transition
-    //1.  if the Bacilli is above certain level you will be exposed - the Bacilli is the one the resident acquired from contagius agent
+    //1.  if the Bacilli is above certain level you will be exposed - the Bacilli is the one the resident acquired from contagious agent
     public void exposedPhaseTransition() {
         // if it reach to this time  - 1% goes to active 20-30 goes to latent 80 % goes to recover
         //System.out.println(this.geExposurePhasePeriod());
@@ -498,6 +501,7 @@ public final class ResidentTB implements Steppable {
 
             double likelyF = 1.0;
             if (this.hasHIV) {
+                // TODO: Check case where no HIV
                 likelyF = kibera.likelyExposedTBtoLatentorActiveWithHIV;
             }
 
@@ -563,13 +567,15 @@ public final class ResidentTB implements Steppable {
             this.activeInfected(); // re-infection
         }
         
-//        if (kibera.getRandom().nextDouble() < kibera.lantentToRecovered) {
+//        if (kibera.getRandom().nextDouble() < kibera.latentToRecovered) {
 //            this.recovered();
 //        }
 
     }
     
     public void wantToStartTreatmentTB(){
+        // TODO: Is this being confused with ART rates?
+        // TODO: Check what the regular TB treatment rates are
         // 30 % quit before treatment - only 70% start treatment - this is the general coverage of treatment
         // 70% of the active - is it in a year? a month ? ??? 24 * 30
         // But when to start treatment - imagine one year 150 days * 24 hours
@@ -582,7 +588,7 @@ public final class ResidentTB implements Steppable {
 
     public void activeInfectionPhaseTransition() {
 
-        // if you are contagous and your at your goal location infect
+        // if you are contagious and you're at your goal location, infect
         if (this.isContagious) { // prob in a day ??
             if (this.getGoalLocation() != null && this.getPosition().equals(this.getGoalLocation())) {
                 
@@ -610,6 +616,7 @@ public final class ResidentTB implements Steppable {
     
         TBDynamics (this.getHealthStatus());
 
+        //TODO: Why is this commented out?
        if (this.hasHIV) { //actions if someone has HIV
             //Drop CD4 Count
 //            if (this.beingTreatedForHIV) {
@@ -625,10 +632,8 @@ public final class ResidentTB implements Steppable {
                 treatment();
 
             }
-
         }
         isDead();
-        
 
     }
     
@@ -638,7 +643,6 @@ public final class ResidentTB implements Steppable {
         }
     }
     public void TBDynamics(int hstatus) {
-
         if (hstatus == exposedTB) {
             exposedPhaseTransition();
         }
@@ -735,7 +739,7 @@ public final class ResidentTB implements Steppable {
         
          
         if (cStep >= contagiousPeriod) {  //how long has this person been on treatment
-            this.isContagious = false; // no more contagiuos if the treatment is taken well
+            this.isContagious = false; // no more contagious if the treatment is taken well
         }
         
         // if not back to latent - relapse

@@ -45,10 +45,10 @@ public class Parameters {
 //        
         
         
-        //Global ART HIV treatment coverage  54% [50–58%]
+        //Global ART [Anti Retroviral Therapy] HIV treatment coverage  54% [50–58%]
         //http://www.unaids.org/en/resources/presscentre/pressreleaseandstatementarchive/2016/may/20160531_Global-AIDS-Update-2016
         
-        // Nairbi Kenya, the coverage is 87%  but viral suppression is only 28%
+        // Nairobi Kenya, the coverage is 87%  but viral suppression is only 28%
         //http://nacc.or.ke/wp-content/uploads/2016/12/Kenya-HIV-County-Profiles-2016.pdf
         //https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4786174/pdf/nihms-764946.pdf
         // we start with 50% coverage in Kibera 
@@ -100,8 +100,8 @@ public class Parameters {
         final public static double latentToDiseaseLifeTimeHIV_MIN = 0.00000838;//0.00000838; // once  1 yr *  365day * 24 hour = 8760  with 7%
         final public static double latentToDiseaseLifeTimeHIV_MAX =  0.0000120;//0.0000120; //once  1 yr *  365day * 24 hour = 8760  with 10%
 	
-       
-        final public static double diseaseToLatentDuetoTreatmentDropputPro = 0.1; // 10% from acctive to latent
+      // N.B. Attrition is Dropout
+        final public static double diseaseToLatentDuetoTreatmentDropoutPro = 0.1; // 10% from active to latent
         
         // source: http://ac.els-cdn.com/S0040580900914515/1-s2.0-S0040580900914515-main.pdf?_tid=17697400-cd98-11e4-9886-00000aab0f02&acdnat=1426701564_53eab51c22fffa757f4918855d75bb7b
         // Feng et al 1999   16 per 100,000
@@ -116,11 +116,11 @@ public class Parameters {
         final public static double recoveredToLatentProb = 0.002;//0.0016; // in capetown, the reinfection after cure is about 85% per year - considering it per hour - 
         
         
-        // need reference
-        final public static double lantentToRecovered = 0.0000003;// need reference
+        //TODO: need reference
+        final public static double latentToRecovered = 0.0000003;// need reference
         
         
-        // time staying on latent phase if they are HIV -ve. After this phase body can reocver
+        // time staying on latent phase if they are HIV -ve. After this phase body can recover
         //http://www.cdc.gov/tb/education/corecurr/default.htm page 42
         //It can take 2 to 8 weeks after the initial TB infection for the body’s immune system to be able
         //to react to tuberculin and for the infection to be detected by the TST or IGRA.
@@ -164,7 +164,7 @@ public class Parameters {
 	//Concentration of saliva per cough
 	//Source: http://www.camra.msu.edu/documents/CAMRA_TB_ALERT.pdf
     // TODO: FIX DISCREPENCY
-	final public static double salivaPerCough = 0.0000006; //ml per cough
+	final public static double salivaPerCough = 0.00000006; //ml per cough
 
 	final public static double bacilliClearanceRatePerHour = 0.8;
 
@@ -185,8 +185,8 @@ public class Parameters {
         final public static double mortalityRateNaturalDeath = 0.00003;// for suscp and recovered - set zero since no birth considered in the model
         final public static double mortalityRateLatentTB = 0.03; // including secondary exposure
         final public static double mortalityRateActiveTB = 0.03;
-        final public static double moratlityRateActiveTB_HIV_NoART =0.1;
-        final public static double moratlityRateActiveTB_HIV_ART =0.1;
+        final public static double mortalityRateActiveTB_HIV_NoART =0.1;
+        final public static double mortalityRateActiveTB_HIV_ART =0.1;
         
                 
 
@@ -235,9 +235,9 @@ public class Parameters {
 
     	globalParam.setExpFileName(returnStringParameter(parameterDB, "experimentName",globalParam.getExpFileName()));
         globalParam.setNumberOfResidents(returnIntParameter(parameterDB, "numResidents", globalParam.getNumberOfResidents()));          
-        globalParam.setHIVPrevalenceRate(returnDoubleParameter(parameterDB, "HIVPrevalanceRate", globalParam.getHIVPrevalenceRate()));
-        globalParam.setTBLatentInfectionPrevalanceRate(returnDoubleParameter(parameterDB, "TBInfectionPrevalanceRate", globalParam.getTBLatentInfectionPrevalanceRate()));
-        globalParam.setTBDiseasePrevalanceRate(returnDoubleParameter(parameterDB, "TBDiseasePrevalanceRate", globalParam.getTBDiseasePrevalanceRate()));
+        globalParam.setHIVPrevalenceRate(returnDoubleParameter(parameterDB, "HIVPrevalenceRate", globalParam.getHIVPrevalenceRate()));
+        globalParam.setTBLatentInfectionPrevalenceRate(returnDoubleParameter(parameterDB, "TBInfectionPrevalanceRate", globalParam.getTBLatentInfectionPrevalenceRate()));
+        globalParam.setTBDiseasePrevalenceRate(returnDoubleParameter(parameterDB, "TBDiseasePrevalenceRate", globalParam.getTBDiseasePrevalenceRate()));
         globalParam.setIsOntrement(returnBooleanParameter(parameterDB, "IsOnTreatment", globalParam.getIsOnTreatment()));
         globalParam.setPercentQuitBeforeART(returnDoubleParameter(parameterDB, "percentQuitBeforeART", globalParam.getPercentQuitBeforeART()));
         globalParam.setPercentQuitDuringART(returnDoubleParameter(parameterDB, "percentQuitDuringART", globalParam.getPercentQuitDuringART()));
@@ -292,10 +292,10 @@ public class Parameters {
 	//Model Global Parameters
     	private String experimentName = "Default";
     	private  int numResidents = 50000;
-    	private  double TBLatentInfectionPrevalanceRate = .35 ;
-    	private  double TBDiseasePrevalanceRate = 0.02;
-    	private  double HIVPrevalanceRate = 0001; //.14;//HIV Prevelance Rate in Kibera is 14% 	//Source: http://d-scholarship.pitt.edu/10936/1/PattersonHThesis2011_(2).pdf
-    	private boolean isOntrement  = true;
+    	private  double TBLatentInfectionPrevalenceRate = .35 ;
+    	private  double TBDiseasePrevalenceRate = 0.02;
+    	private  double HIVPrevalenceRate = 0.14 ; //.14;//HIV Prevalence Rate in Kibera is 14% 	//Source: http://d-scholarship.pitt.edu/10936/1/PattersonHThesis2011_(2).pdf
+    	private boolean isOnTreatment = true;
         
        //Percent chance that someone will quit TB Antiretroviral treatment (ART) in the beginning or during in Kibera
 	//Source: http://fieldresearch.msf.org/msf/bitstream/10144/204570/1/Tayler-Smith%20ARV%20Uptake%20TB%20Kibera%20TMIH.pdf
@@ -303,8 +303,6 @@ public class Parameters {
 	// probability of getting treatment -
         private double percentQuitDuringART = .015; //0.05 --20.2% of patients will quit during treatment-- including people move out - some better lld movement out of the areato amke it small since the model does not h
 
-
-        
     	public void setExpFileName(String f){
             this.experimentName =f;
         }
@@ -321,35 +319,35 @@ public class Parameters {
     	}
 
     	public  double getHIVPrevalenceRate() {
-    		return HIVPrevalanceRate;
+    		return HIVPrevalenceRate;
     	}
 
     	public  void setHIVPrevalenceRate(double val) {
-    		HIVPrevalanceRate = val;
+    		HIVPrevalenceRate = val;
     	}
 
-    	public  double getTBLatentInfectionPrevalanceRate() {
-    		return TBLatentInfectionPrevalanceRate;
+    	public  double getTBLatentInfectionPrevalenceRate() {
+    		return TBLatentInfectionPrevalenceRate;
     	}
 
-    	public  void setTBLatentInfectionPrevalanceRate(double val) {
-    		TBLatentInfectionPrevalanceRate = val;
+    	public  void setTBLatentInfectionPrevalenceRate(double val) {
+    		TBLatentInfectionPrevalenceRate = val;
     	}
     	
-    	public  double getTBDiseasePrevalanceRate() {
-    		return TBDiseasePrevalanceRate;
+    	public  double getTBDiseasePrevalenceRate() {
+    		return TBDiseasePrevalenceRate;
     	}
 
-    	public  void setTBDiseasePrevalanceRate(double val) {
-    		TBDiseasePrevalanceRate = val;
+    	public  void setTBDiseasePrevalenceRate(double val) {
+    		TBDiseasePrevalenceRate = val;
     	}
         
         public  boolean getIsOnTreatment() {
-    		return isOntrement;
+    		return isOnTreatment;
     	}
 
     	public  void setIsOntrement(boolean val) {
-    		isOntrement = val;
+    		isOnTreatment = val;
     	}
         
         public  void setPercentQuitBeforeART(double val) {

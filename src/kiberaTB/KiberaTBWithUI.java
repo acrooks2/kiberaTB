@@ -122,10 +122,10 @@ public class KiberaTBWithUI extends GUIState {
 		display.attach(religiousFacilityPortrayal, "ReligiousFacilities");
 
 		//-------------------Adding the resteruants portrayal--------------------------------	
-		FieldPortrayal2D resterauntPortrayal = new SparseGridPortrayal2D();
-		resterauntPortrayal.setField(kibera.restaurantGrid);
-		resterauntPortrayal.setPortrayalForAll(new RectanglePortrayal2D(new Color(102, 0, 102), 1.0, false));
-		display.attach(resterauntPortrayal, "Resteraunts");
+		FieldPortrayal2D restaurantPortrayal = new SparseGridPortrayal2D();
+		restaurantPortrayal.setField(kibera.restaurantGrid);
+		restaurantPortrayal.setPortrayalForAll(new RectanglePortrayal2D(new Color(102, 0, 102), 1.0, false));
+		display.attach(restaurantPortrayal, "restaurants");
 
 		//------------------Adding the water sources portrayal-------------------------------
 		FieldPortrayal2D waterPortrayal = new SparseGridPortrayal2D();

@@ -1,4 +1,4 @@
-"Time","BusinessInfected","ResterauntInfected","SchoolInfected","WaterInfected","ReligionInfected","BusinessDiseased","ResterauntDiseased","SchoolDiseased","WaterDiseased","ReligionDiseased"
+"Time","BusinessInfected","restaurantInfected","SchoolInfected","WaterInfected","ReligionInfected","BusinessDiseased","restaurantDiseased","SchoolDiseased","WaterDiseased","ReligionDiseased"
 "0","0","0","0","0","0","0","0","0","0","0"
 "1","0","0","0","0","0","0","0","0","0","0"
 "2","0","0","0","0","0","0","0","0","0","0"

@@ -84,12 +84,12 @@ public class KiberaTBObserver implements Steppable {
             dataCSVFile_status.writeNext(header_cStatus);
             // activity
 
-            String[] header_act = new String[]{"Step", "Total Residents", "At Home", "School", "Water", "Religion", "Resteraunt",
+            String[] header_act = new String[]{"Step", "Total Residents", "At Home", "School", "Water", "Religion", "restaurant",
                 "Health Center", "Socialize", "Work", "Business"};
             dataCSVFile_act.writeNext(header_act);
 
-            String[] header_hotspot = new String[]{"Time", "BusinessInfected", "ResterauntInfected", "SchoolInfected", "WaterInfected",
-                "ReligionInfected", "BusinessDiseased", "ResterauntDiseased", "SchoolDiseased", "WaterDiseased", "ReligionDiseased"};
+            String[] header_hotspot = new String[]{"Time", "BusinessInfected", "restaurantInfected", "SchoolInfected", "WaterInfected",
+                "ReligionInfected", "BusinessDiseased", "restaurantDiseased", "SchoolDiseased", "WaterDiseased", "ReligionDiseased"};
             dataCSVFile_hotspot.writeNext(header_hotspot);
 
         } catch (IOException ex) {
@@ -104,14 +104,14 @@ public class KiberaTBObserver implements Steppable {
         String numSchool = Integer.toString(kibera.sumAct[ActivityTB.school]);
         String numWater = Integer.toString(kibera.sumAct[ActivityTB.water]);
         String numReligion = Integer.toString(kibera.sumAct[ActivityTB.religion]);
-        String numResteraunt = Integer.toString(kibera.sumAct[ActivityTB.restaurant]);
+        String numrestaurant = Integer.toString(kibera.sumAct[ActivityTB.restaurant]);
         String numHealthCenter = Integer.toString(kibera.sumAct[ActivityTB.healthCenter]);
         String numSocialize = Integer.toString(kibera.sumAct[ActivityTB.socialize]);
         String numWork = Integer.toString(kibera.sumAct[ActivityTB.work]);
         String numBusiness = Integer.toString(kibera.sumAct[ActivityTB.business]);
 
         String[] data_act = new String[]{job, numTotAgent, numAtHome, numSchool, numWater, numReligion,
-            numResteraunt, numHealthCenter, numSocialize, numWork, numBusiness};
+            numrestaurant, numHealthCenter, numSocialize, numWork, numBusiness};
 
 
         String numHealthy = Integer.toString(kibera.totalHealthy);
@@ -137,19 +137,19 @@ public class KiberaTBObserver implements Steppable {
 
         //Get data for hotspots 
         String businessInfected = Integer.toString(kibera.hotspotLocsInfected[0]);
-        String resterauntInfected = Integer.toString(kibera.hotspotLocsInfected[1]);
+        String restaurantInfected = Integer.toString(kibera.hotspotLocsInfected[1]);
         String schoolInfected = Integer.toString(kibera.hotspotLocsInfected[2]);
         String waterInfected = Integer.toString(kibera.hotspotLocsInfected[3]);
         String religionInfected = Integer.toString(kibera.hotspotLocsInfected[4]);
 
         String businessDiseased = Integer.toString(kibera.hotspotLocsDiseased[0]);
-        String resterauntDiseased = Integer.toString(kibera.hotspotLocsDiseased[1]);
+        String restaurantDiseased = Integer.toString(kibera.hotspotLocsDiseased[1]);
         String schoolDiseased = Integer.toString(kibera.hotspotLocsDiseased[2]);
         String waterDiseased = Integer.toString(kibera.hotspotLocsDiseased[3]);
         String religionDiseased = Integer.toString(kibera.hotspotLocsDiseased[4]);
 
-        String[] data_hotspot = new String[]{job, businessInfected, resterauntInfected, schoolInfected,
-            waterInfected, religionInfected, businessDiseased, resterauntDiseased, schoolDiseased, waterDiseased,
+        String[] data_hotspot = new String[]{job, businessInfected, restaurantInfected, schoolInfected,
+            waterInfected, religionInfected, businessDiseased, restaurantDiseased, schoolDiseased, waterDiseased,
             religionDiseased};
         
         this.dataCSVFile_act.writeNext(data_act);
@@ -190,7 +190,7 @@ public class KiberaTBObserver implements Steppable {
         writeGridFiles();
         finish();
 
-       //"At Home", "School", "Water", "Religion", "Resteraunt", "Health Center", "Socialize", "Latrine", "Work", "Business"
+       //"At Home", "School", "Water", "Religion", "restaurant", "Health Center", "Socialize", "Latrine", "Work", "Business"
        
 //        if (kibera.schedule.getSteps() % kibera.params.globalParam.getwriteGridTimerFrequency()==0) { // every month ??
 //            writeGrid = true;
