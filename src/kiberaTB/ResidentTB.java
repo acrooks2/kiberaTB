@@ -21,10 +21,10 @@ public final class ResidentTB implements Steppable {
     public boolean isMale;
     public boolean isStudent; //student goes to school 
     public int schoolIndex;
-    public int schoolClass; // if studen which class are you 
+    public int schoolClass; // if student, which class you're in
     private Household home;
     private double waterDemand = 0.0;
-    private int latUse; //laterine use, normal is 1-2 per day 
+    private int latUse; //latrine use, normal is 1-2 per day
     private int restaurantVisits;
 
     private Parcel position; //current position 
@@ -44,7 +44,7 @@ public final class ResidentTB implements Steppable {
     private TimeManager timeManager;
     public int hourInDay;
     public int currentAct;
-    public double Prob_ExposureAge = 0.8;  // probabilit of exposure exponent - 80% age grourp
+    public double Prob_ExposureAge = 0.8;  // probability of exposure exponent - 80% age group
 
     //Figure out if an agent is in a public place
     public boolean onRestaurant = false;
@@ -63,7 +63,7 @@ public final class ResidentTB implements Steppable {
     double healthRandomDepreciationRate;
 
     int healthStatus = 1; //1=susceptible; 2=exposed; 3=infectious; 4=recovered
-    int prevHealthStatus = 1; //moniters health status of the previous step to see the change
+    int prevHealthStatus = 1; //monitors health status of the previous step to see the change
 
     final int susceptible = 1;
     final int exposedTB = 2; // inhale the bacteria - can pass to latent or active or pass to recovered - no impact on their body
@@ -478,12 +478,11 @@ public final class ResidentTB implements Steppable {
     public void recovered() {
         this.setHealthStatus(this.recovered); //recovered 
         this.hasRecovered = true;
-        
         this.isSusceptible = false;
-        this.hasExposed = false;// no more exposed asit pass to latent
+        this.hasExposed = false;
         this.hasLatentInfection = false; // no more latent
         this.hasActiveInfection = false;
-         this.hasLatenInfectionExposed = false;
+        this.hasLatenInfectionExposed = false;
         this.isContagious = false;
         this.bodyHealth = kibera.bodyHealth_Max;
         this.alreadyChecked = false; // to start over treatment if agent be infected again
@@ -546,7 +545,6 @@ public final class ResidentTB implements Steppable {
             this.setExposurePhasePeriod(0);
 
         }
-
     }
 
     // latent tb can develop tb in some time in their lifetime - due to many factors
@@ -563,6 +561,7 @@ public final class ResidentTB implements Steppable {
 
         }
 
+        // TODO: probLatetoAct is super high since nextdouble is between 0 and 1, should the range be changed?
         if (kibera.getRandom().nextDouble() < probLateToAct) {
             this.activeInfected(); // re-infection
         }

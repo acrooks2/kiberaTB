@@ -148,7 +148,7 @@ public class KiberaTBWithUI extends GUIState {
 		ContinuousPortrayal2D residentPortrayal = new ContinuousPortrayal2D();
 		residentPortrayal.setField(kibera.world);
 		residentPortrayal.setPortrayalForAll(new ResidentPortrayal());
-		display.attach(residentPortrayal, "Residentsadfadfdf");
+		display.attach(residentPortrayal, "Residents");
 
 		//------------------Drawing the display-----------------	
 		display.reset();
